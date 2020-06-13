@@ -1,6 +1,19 @@
-p {
-    display: inline;
+.addItemButton {
+    height: 34px;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid black;
+    border-left: 0;
+    outline: none;
 }
-.checked {
-    text-decoration: line-through;
+.addItemButton:active {
+    background-color: #a5a5cb;
+}
+
+#itemInput {
+    width: 300px;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid black;
+}
+#itemInput:focus {
+    outline: none;
 }
