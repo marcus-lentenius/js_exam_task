@@ -16,10 +16,10 @@ export class Todo extends React.Component {
 
     render() {
         return (
-            <>
-                <form id="items" onSubmit={this.addItem.bind(this)}>
-                    <input type="text" placeholder="Add item" id="itemInput"/>
-                    <button>Add Item</button>
+            <div className="mainWrapper">
+                <form id="items" onSubmit={this.addItem.bind(this)} autoComplete="on" >
+                    <input type="text" placeholder="Add item" id="itemInput" autoComplete="off" />
+                    <button className="addItemButton">Add Item</button>
                 </form>
                 <ul>
                         {this.state.items.map((item) =>
@@ -32,7 +32,7 @@ export class Todo extends React.Component {
                     )}
                 </ul>
                 <button onClick={logOut}>log out</button>
-            </>
+            </div>
         );
     }
 

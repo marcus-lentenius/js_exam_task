@@ -15,7 +15,6 @@ import ReactDOM from "react-dom";
 import {LogInForm} from "../components/LogIn";
 import {App} from "../components/App";
 import {Todo} from "../components/Todo";
-import "../styles/index.css";
 
 const app = new App();
 
