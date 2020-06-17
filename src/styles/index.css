@@ -1,32 +1,5 @@
 body {
     background-color: white;
+    margin: 0;
+    color: #3e3e3e;
 }
-
-input[type=text],
-input[type=password]{
-    height: 30px;
-    width: 300px;
-    padding-left: 10px;
-}
-
-.inputWrapper {
-    margin: 10px 0;
-}
-
-.mainWrapper {
-    left: 50%;
-    top: 15%;
-    transform: translateX(-50%);
-    position: absolute;
-}
-
-#submit_login {
-    right: 0;
-    position: absolute;
-}
-
-label {
-    font-family: Calibri, serif;
-    margin-bottom: 100px;
-}
-

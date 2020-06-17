@@ -1,10 +1,10 @@
 import React from "react";
-import {LogInForm} from "./LogIn";
+import {LoginForm} from "./Login";
 
 export class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = <LogInForm/>;
+        this.state = <LoginForm/>;
     }
     render() {
         return (

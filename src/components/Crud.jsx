@@ -21,7 +21,7 @@ class Crud {
                 console.error('setStore error: ', e);
             });
     }
-
+//todo slå ihop read och getData
     async read() {
         await this.getData();
         return this.doc.data().list;
