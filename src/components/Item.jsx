@@ -1,67 +1,41 @@
 import React, {useState} from "react";
+import {ADelete, AUpdate, CheckBox, InputUpdateTextField, ItemWrapper, Li, P, UpdateOptions} from "./style/ItemStyles";
 import styled from "@emotion/styled";
 
-export const Item = ({item, removeItem, updateItem}) => {
+export const Item = ({item, removeItem, updateItem,reRender}) => {
     const [isChecked, toggleIsChecked] = useState(0);
     const [isUpdateable, toggleUpdatable] = useState(false);
     const [itemContent, setItemContent] = useState('')
-    const [checkedStylde, toggleCheckedStyle] = useState('text-decoration: line-through;')
+    const [checkedStyled, toggleCheckedStyle] = useState('')
 
-    //todo uppdatera när check
-    // lägg till edit osv
-    const ItemWrapper = styled.div`
-        width: 300px;
-        cursor: pointer;
-        display: inline-block;
-    `
-
+    //todo use emotion css?
     const P = styled.p`
-      ${item.checked ? checkedStylde : ''}
-    `
-
-    const ADelete = styled.a`
-        position: absolute;
-        right: 0;
-    `
-    const ACancel = styled.a`
         margin-left: 10px;
-        font-size: 25px;
-    `
-    const AUpdate = styled.a`
-        margin-left: 10px;
-        font-size: 17px;
-    `
-    const Input = styled.input`
-        height: 29px;
-        padding-left: 10px;
-    `
-    const Li = styled.li`
-        padding: 0;
-        list-style: none;
-        font-family: Calibri, serif;
-        font-size: 16px;
+        ${item.checked ? checkedStyled : ''}
     `
     if (!isUpdateable) {
         return (
             <Li>
-                <input
-                    checked={item.checked ? true : false}
+                <CheckBox
+                    checked={item.checked}
                     type="checkbox"
                     onChange={() => {
                         item.checked ? item.checked = false : item.checked = true;
                         toggleIsChecked({isChecked: item.checked})
                         updateItem();
+                        reRender();
                     }}/>
 
-                <ItemWrapper onClick={() =>
-                    toggleUpdatable(true)}>
-
+                <ItemWrapper onClick={() => {
+                    toggleUpdatable(true);
+                    setItemContent(item.name);
+                }}>
                     <P>
                         {item.name}
                     </P>
                 </ItemWrapper>
 
-                <ADelete onClick={(e) => removeItem(item)}>
+                <ADelete onClick={() => removeItem(item)}>
                     Delete
                 </ADelete>
             </Li>
@@ -69,36 +43,41 @@ export const Item = ({item, removeItem, updateItem}) => {
     } else {
         return (
             <Li>
-                <input
-                    checked={item.checked ? true : false}
+                <CheckBox
+                    checked={item.checked}
                     type="checkbox"
                     onChange={() => {
                         item.checked ? item.checked = false : item.checked = true;
                         toggleIsChecked({isChecked: item.checked})
                         updateItem();
+                        reRender();
+                    }}
+                />
+                <InputUpdateTextField
+                    type="text"
+                    defaultValue={itemContent}
+                    autoFocus
+                    onBlur={() => doUpdate()}
+                    onChange={(e) => {
+                        setItemContent(e.target.value);
+                    }}
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            doUpdate()
+                        }
                     }}
                 />
 
-                <Input type="text"
-                       defaultValue={item.name}
-                       onChange={(e) => {
-                           setItemContent(e.target.value)
-                       }}/>
-
-                <div className="updateWrapper">
-                    <AUpdate onClick={(e) => {
-                        item.name = itemContent;
-                        updateItem(item);
-                        toggleUpdatable(false)
-                    }}>🗸</AUpdate>
-
-                    <ACancel onClick={(e) => {
-                        toggleUpdatable(false)
-                    }}>⨯</ACancel>
-
-                </div>
+                <UpdateOptions>
+                    <AUpdate onClick={() => doUpdate()}>🗸</AUpdate>
+                </UpdateOptions>
             </Li>
         );
     }
 
+    function doUpdate() {
+        item.name = itemContent;
+        updateItem(item);
+        toggleUpdatable(false)
+    }
 };
