@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/index.css";
 import {authenticate} from "../scripts/authenticator";
-import styled from "@emotion/styled";
 import {Username, LoginButton, Password, Label, Form, Retry} from "./style/LoginStyles";
 
 
@@ -35,9 +34,9 @@ export class LoginForm extends React.Component {
         </Form>;
 
     render() {
+        // autoinloggning för dev
         authenticate('a','a', this.setLoginFailed())
 
-        // sessionStorage.clear();//todo behövs denna?
         if (!this.state.loginFailed) {
             return (
                 this.loginForm

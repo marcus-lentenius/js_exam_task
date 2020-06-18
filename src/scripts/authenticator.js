@@ -2,7 +2,6 @@ import {setState} from "./index";
 import {store} from "../components/Firebase";
 const credentials = store.collection('credentials');
 
-//todo async och return
 export function authenticate(username, password, setLogInFailed) {
     credentials.where("username", "==", username)
         .get()
@@ -10,8 +9,8 @@ export function authenticate(username, password, setLogInFailed) {
             if (!querySnapshot.empty) {
                 querySnapshot.forEach((doc) => {
                     if (doc.data().password === password) {
-                        window.sessionStorage.setItem('id', doc.data().id); //todo fixa till?
-                        window.sessionStorage.setItem('user', username); //todo fixa till?
+                        window.sessionStorage.setItem('id', doc.data().id);
+                        window.sessionStorage.setItem('user', username);
                         setState('main');
                     } else {
                         setLogInFailed()

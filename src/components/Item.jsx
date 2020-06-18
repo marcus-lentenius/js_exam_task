@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {ADelete, AUpdate, CheckBox, InputUpdateTextField, ItemWrapper, Li, P, UpdateOptions} from "./style/ItemStyle";
+import {ADelete, AUpdate, CheckBox, InputUpdateTextField, ItemWrapper, Li, P, UpdateOptions} from "./style/ItemStyles";
 import styled from "@emotion/styled";
 
 export const Item = ({item, removeItem, updateItem,reRender}) => {
